@@ -22,17 +22,14 @@ public class EmployeeService : IEmployeeService
     {
         return await _context.Employees.AnyAsync(x => x.Id == id);
     }
-
     public async Task<List<Employee>> GetAllAsync()
     {
         return await _context.Employees.AsNoTracking().Where(x => x.Status == false).ToListAsync();
     }
-
     public async Task<Employee> GetByIdAsync(int id)
     {
         return await _context.Employees.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
     }
-
     public async Task<Employee> InsertEmployeeAsync(Employee employee)
     {
         await _context.Employees.AddAsync(employee);
